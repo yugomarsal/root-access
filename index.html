@@ -18,7 +18,6 @@
       position: relative;
     }
 
-    /* CRT Scanline */
     body::before {
       content: "";
       position: fixed;
@@ -38,349 +37,156 @@
       z-index: 1;
     }
 
-    /* ========== LANDING PAGE ========== */
-    #landing {
-      padding: 30px 10px 50px;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
+    /* Landing */
+    #landing { padding: 30px 10px 50px; }
+    .hero { text-align: center; margin-bottom: 40px; }
     .hero img {
-      width: 130px;
-      border-radius: 50%;
-      border: 3px solid #00ff9f;
-      box-shadow: 0 0 30px #00ff9faa;
-      margin-bottom: 18px;
+      width: 130px; border-radius: 50%; border: 3px solid #00ff9f;
+      box-shadow: 0 0 30px #00ff9faa; margin-bottom: 18px;
+      animation: pulse 3s infinite;
     }
-
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px #00ff9faa; }
+      50% { box-shadow: 0 0 40px #00ff9f; }
+    }
     .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.6rem;
-      letter-spacing: 4px;
-      text-shadow: 0 0 20px #00ff9f;
-      margin-bottom: 8px;
+      font-family: 'Orbitron', sans-serif; font-size: 2.6rem;
+      letter-spacing: 4px; text-shadow: 0 0 20px #00ff9f; margin-bottom: 8px;
     }
-
-    .hero .tagline {
-      color: #88aa88;
-      font-size: 1rem;
-      margin-bottom: 25px;
-    }
-
+    .hero .tagline { color: #88aa88; font-size: 1rem; margin-bottom: 25px; }
     .hero p {
-      color: #a0c0a0;
-      line-height: 1.7;
-      max-width: 560px;
-      margin: 0 auto 30px;
-      font-size: 0.95rem;
+      color: #a0c0a0; line-height: 1.7; max-width: 560px;
+      margin: 0 auto 30px; font-size: 0.95rem;
     }
-
     .start-btn {
-      background: #00ff9f;
-      color: #000;
-      border: none;
-      padding: 16px 48px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: 0.3s;
-      text-transform: uppercase;
+      background: #00ff9f; color: #000; border: none;
+      padding: 16px 48px; font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem; font-weight: 700; letter-spacing: 2px;
+      cursor: pointer; transition: 0.3s; text-transform: uppercase;
       box-shadow: 0 0 25px #00ff9f88;
     }
+    .start-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px #00ff9f; }
 
-    .start-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 40px #00ff9f;
-    }
-
-    /* Features */
     .section {
-      background: #0a0f0a;
-      border: 1px solid #00ff9f33;
-      border-radius: 8px;
-      padding: 22px;
-      margin-bottom: 22px;
+      background: #0a0f0a; border: 1px solid #00ff9f33;
+      border-radius: 8px; padding: 22px; margin-bottom: 22px;
     }
-
     .section h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.15rem;
-      margin-bottom: 14px;
-      color: #00ff9f;
-      letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif; font-size: 1.15rem;
+      margin-bottom: 14px; color: #00ff9f; letter-spacing: 1px;
     }
-
-    .features {
-      display: grid;
-      gap: 12px;
-    }
-
+    .features { display: grid; gap: 12px; }
     .feature {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: #b0d0b0;
-      font-size: 0.92rem;
-      line-height: 1.5;
+      display: flex; gap: 12px; align-items: flex-start;
+      color: #b0d0b0; font-size: 0.92rem; line-height: 1.5;
     }
+    .feature span { color: #00ff9f; font-weight: bold; }
+    .faq-item { margin-bottom: 16px; }
+    .faq-item h3 { color: #00ff9f; font-size: 0.95rem; margin-bottom: 4px; }
+    .faq-item p { color: #88aa88; font-size: 0.9rem; line-height: 1.5; }
 
-    .feature span {
-      color: #00ff9f;
-      font-weight: bold;
-    }
-
-    /* FAQ */
-    .faq-item {
-      margin-bottom: 16px;
-    }
-
-    .faq-item h3 {
-      color: #00ff9f;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
-    }
-
-    .faq-item p {
-      color: #88aa88;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* ========== GAME STYLES ========== */
+    /* Header */
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid #00ff9f44;
-      margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid #00ff9f44; margin-bottom: 20px;
     }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .logo-area { display: flex; align-items: center; gap: 12px; }
     .logo-area img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid #00ff9f;
-      box-shadow: 0 0 12px #00ff9f88;
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 2px solid #00ff9f; box-shadow: 0 0 12px #00ff9f88;
     }
-
     .title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 3px;
-      color: #00ff9f;
-      text-shadow: 0 0 10px #00ff9f;
+      font-family: 'Orbitron', sans-serif; font-size: 1.5rem;
+      letter-spacing: 3px; color: #00ff9f; text-shadow: 0 0 10px #00ff9f;
     }
-
-    .stats {
-      text-align: right;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
+    .stats { text-align: right; font-size: 0.9rem; line-height: 1.5; }
     .stats span { color: #fff; }
+    .lives { color: #ff4d6d; }
 
     .screen { display: none; }
-    .screen.active { display: block; }
+    .screen.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .terminal {
-      background: #0a0f0a;
-      border: 1px solid #00ff9f55;
-      border-radius: 6px;
-      padding: 22px;
-      min-height: 440px;
+      background: #0a0f0a; border: 1px solid #00ff9f55; border-radius: 6px;
+      padding: 22px; min-height: 440px;
       box-shadow: 0 0 40px #00ff9f15, inset 0 0 30px #00ff9f08;
       position: relative;
     }
-
     .terminal::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 28px;
-      background: #111;
-      border-bottom: 1px solid #00ff9f33;
-      border-radius: 6px 6px 0 0;
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 28px;
+      background: #111; border-bottom: 1px solid #00ff9f33; border-radius: 6px 6px 0 0;
     }
-
     .terminal-header {
-      position: absolute;
-      top: 6px;
-      left: 14px;
-      font-size: 0.75rem;
-      color: #00ff9f99;
-      letter-spacing: 1px;
+      position: absolute; top: 6px; left: 14px; font-size: 0.75rem;
+      color: #00ff9f99; letter-spacing: 1px;
     }
 
-    .level-select {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
+    .level-select { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
     .level-btn {
-      background: transparent;
-      border: 1px solid #00ff9f66;
-      color: #00ff9f;
-      padding: 16px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1.05rem;
-      cursor: pointer;
-      transition: 0.25s;
-      text-align: left;
+      background: transparent; border: 1px solid #00ff9f66; color: #00ff9f;
+      padding: 16px; font-family: 'Share Tech Mono', monospace; font-size: 1.05rem;
+      cursor: pointer; transition: 0.25s; text-align: left;
     }
-
     .level-btn:hover {
-      background: #00ff9f18;
-      border-color: #00ff9f;
-      box-shadow: 0 0 18px #00ff9f44;
+      background: #00ff9f18; border-color: #00ff9f; box-shadow: 0 0 18px #00ff9f44;
     }
-
-    .level-btn span {
-      display: block;
-      font-size: 0.8rem;
-      color: #88aa88;
-      margin-top: 4px;
-    }
+    .level-btn span { display: block; font-size: 0.8rem; color: #88aa88; margin-top: 4px; }
 
     .btn {
-      background: transparent;
-      border: 2px solid #00ff9f;
-      color: #00ff9f;
-      padding: 13px 36px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      background: transparent; border: 2px solid #00ff9f; color: #00ff9f;
+      padding: 13px 36px; font-family: 'Share Tech Mono', monospace; font-size: 1rem;
+      cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;
     }
-
-    .btn:hover {
-      background: #00ff9f;
-      color: #000;
-      box-shadow: 0 0 25px #00ff9f;
-    }
+    .btn:hover { background: #00ff9f; color: #000; box-shadow: 0 0 25px #00ff9f; }
 
     .level-badge {
-      display: inline-block;
-      background: #00ff9f15;
-      border: 1px solid #00ff9f;
-      padding: 3px 12px;
-      font-size: 0.8rem;
-      margin-bottom: 18px;
-      letter-spacing: 1px;
-      color: #00ff9f;
+      display: inline-block; background: #00ff9f15; border: 1px solid #00ff9f;
+      padding: 3px 12px; font-size: 0.8rem; margin-bottom: 18px; letter-spacing: 1px; color: #00ff9f;
     }
+    .story { color: #7dffb3; margin-bottom: 16px; line-height: 1.5; font-size: 0.92rem; }
+    .question { font-size: 1.1rem; margin-bottom: 22px; line-height: 1.5; color: #e0ffe0; }
 
-    .story {
-      color: #7dffb3;
-      margin-bottom: 16px;
-      line-height: 1.5;
-      font-size: 0.92rem;
-    }
-
-    .question {
-      font-size: 1.1rem;
-      margin-bottom: 22px;
-      line-height: 1.5;
-      color: #e0ffe0;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-    }
-
+    .options { display: flex; flex-direction: column; gap: 11px; }
     .option {
-      background: #0d150d;
-      border: 1px solid #00ff9f44;
-      padding: 13px 16px;
-      cursor: pointer;
-      transition: 0.2s;
-      text-align: left;
-      color: #00ff9f;
+      background: #0d150d; border: 1px solid #00ff9f44; padding: 13px 16px;
+      cursor: pointer; transition: 0.2s; text-align: left; color: #00ff9f;
     }
+    .option:hover { background: #00ff9f18; border-color: #00ff9f; box-shadow: 0 0 12px #00ff9f33; }
+    .option.correct { background: #00ff8822; border-color: #00ff88; color: #00ff88; }
+    .option.wrong { background: #ff004422; border-color: #ff0044; color: #ff6b6b; animation: shake 0.4s; }
 
-    .option:hover {
-      background: #00ff9f18;
-      border-color: #00ff9f;
-      box-shadow: 0 0 12px #00ff9f33;
-    }
-
-    .option.correct {
-      background: #00ff8822;
-      border-color: #00ff88;
-      color: #00ff88;
-    }
-
-    .option.wrong {
-      background: #ff004422;
-      border-color: #ff0044;
-      color: #ff6b6b;
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
 
     .input-area { margin-top: 10px; }
-
     .input-area input {
-      width: 100%;
-      background: #0a120a;
-      border: 1px solid #00ff9f;
-      color: #00ff9f;
-      padding: 14px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1.05rem;
-      outline: none;
+      width: 100%; background: #0a120a; border: 1px solid #00ff9f;
+      color: #00ff9f; padding: 14px; font-family: 'Share Tech Mono', monospace;
+      font-size: 1.05rem; outline: none;
     }
+    .input-area input:focus { box-shadow: 0 0 15px #00ff9f55; }
+    .submit-btn { margin-top: 12px; width: 100%; }
 
-    .input-area input:focus {
-      box-shadow: 0 0 15px #00ff9f55;
-    }
-
-    .submit-btn {
-      margin-top: 12px;
-      width: 100%;
-    }
-
-    #result-screen {
-      text-align: center;
-      padding: 40px 15px;
-    }
-
+    #result-screen { text-align: center; padding: 40px 15px; }
     #result-screen h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.9rem;
-      margin-bottom: 12px;
-      text-shadow: 0 0 15px #00ff9f;
+      font-family: 'Orbitron', sans-serif; font-size: 1.9rem;
+      margin-bottom: 12px; text-shadow: 0 0 15px #00ff9f;
     }
-
     .final-score {
-      font-size: 2.8rem;
-      color: #fff;
-      margin: 18px 0;
-      text-shadow: 0 0 20px #00ff9f;
+      font-size: 2.8rem; color: #fff; margin: 18px 0; text-shadow: 0 0 20px #00ff9f;
     }
+    .rank { font-size: 1.15rem; color: #7dffb3; margin-bottom: 12px; }
+    .highscore-text { color: #88aa88; margin-bottom: 25px; font-size: 0.95rem; }
 
-    .rank {
-      font-size: 1.15rem;
-      color: #7dffb3;
-      margin-bottom: 28px;
+    .highscore-box {
+      background: #00ff9f11; border: 1px solid #00ff9f44;
+      padding: 10px 16px; border-radius: 6px; margin: 15px 0;
+      font-size: 0.95rem; color: #00ff9f;
     }
-
-    .lives { color: #ff4d6d; }
 
     @media (max-width: 600px) {
       .hero h1 { font-size: 1.9rem; }
@@ -391,7 +197,7 @@
 <body>
   <div class="container">
 
-    <!-- ========== LANDING PAGE ========== -->
+    <!-- LANDING -->
     <div id="landing" class="screen active">
       <div class="hero">
         <img src="https://iili.io/CZZM5KB.md.jpg" alt="Root Access Logo">
@@ -402,50 +208,80 @@
           A neon cyberpunk quiz that tests your terminal knowledge across three difficulty levels.
         </p>
         <button class="start-btn" onclick="showLevelSelect()">START ROOTING</button>
+        <div class="highscore-box" id="landing-highscore">High Score: 0</div>
       </div>
 
       <div class="section">
         <h2>// WHAT IS THIS?</h2>
         <div class="features">
-          <div class="feature"><span>></span> A browser-based terminal quiz themed around Linux commands and hacking culture</div>
-          <div class="feature"><span>></span> Three difficulty levels: Easy (ABC), Medium (story + ABCD), Hard (type the answer)</div>
-          <div class="feature"><span>></span> Neon cyberpunk interface with CRT scanline effects</div>
-          <div class="feature"><span>></span> Instant play — no download, no install, just pure terminal vibes</div>
+          <div class="feature"><span>></span> Browser-based terminal quiz with neon cyberpunk aesthetic</div>
+          <div class="feature"><span>></span> Three difficulty levels: Easy (10), Medium (15), Hard (20 questions)</div>
+          <div class="feature"><span>></span> High score system + sound effects</div>
+          <div class="feature"><span>></span> Instant play — no download required</div>
         </div>
       </div>
 
       <div class="section">
         <h2>// FAQ</h2>
-        
         <div class="faq-item">
           <h3>Do I need real coding knowledge?</h3>
-          <p>Basic familiarity with common Linux commands helps, but the Easy level is beginner-friendly.</p>
+          <p>Basic Linux commands help, but Easy level is beginner-friendly.</p>
         </div>
-
         <div class="faq-item">
-          <h3>Is this game free?</h3>
-          <p>Yes. Completely free to play in your browser.</p>
+          <h3>Is this free?</h3>
+          <p>Yes. Completely free to play.</p>
         </div>
-
         <div class="faq-item">
           <h3>Can I play on mobile?</h3>
-          <p>Yes. The game is fully responsive and works on Android browsers.</p>
+          <p>Yes, fully responsive on Android browsers.</p>
         </div>
-
         <div class="faq-item">
           <h3>What happens if I lose all lives?</h3>
           <p>Game over. You can reboot and try again anytime.</p>
         </div>
+      </div>
+    </div>
 
-        <div class="faq-item">
-          <h3>Who made this?</h3>
-          <p>Built as a fun terminal-themed quiz project. Just hit START ROOTING and enjoy.</p>
+    <!-- LEVEL SELECT -->
+    <div id="level-select-screen" class="screen">
+      <header>
+        <div class="logo-area">
+          <img src="https://iili.io/CZZM5KB.md.jpg" alt="Logo">
+          <div class="title">ROOT ACCESS</div>
+        </div>
+        <div class="stats">
+          <div>HIGH: <span id="hs-display">0</span></div>
+        </div>
+      </header>
+      <div class="terminal">
+        <div class="terminal-header">root@pepe:~$</div>
+        <br><br>
+        <div style="text-align:center; margin-bottom:20px;">
+          <div style="font-size:1.1rem; margin-bottom:8px;">SELECT DIFFICULTY</div>
+          <div style="color:#88aa88; font-size:0.9rem;">Choose your clearance level</div>
+        </div>
+        <div class="level-select">
+          <button class="level-btn" onclick="startLevel('easy')">
+            [1] ACCESS_GRANTED
+            <span>Easy • Multiple Choice (A B C) • 10 Questions</span>
+          </button>
+          <button class="level-btn" onclick="startLevel('medium')">
+            [2] BREACH_IN_PROGRESS
+            <span>Medium • Story + ABCD • 15 Questions</span>
+          </button>
+          <button class="level-btn" onclick="startLevel('hard')">
+            [3] ROOT_ACCESS
+            <span>Hard • Type the command • 20 Questions</span>
+          </button>
+        </div>
+        <div style="text-align:center; margin-top:25px;">
+          <button class="btn" onclick="backToLanding()" style="font-size:0.85rem; padding:10px 24px;">← BACK</button>
         </div>
       </div>
     </div>
 
-    <!-- ========== LEVEL SELECT ========== -->
-    <div id="level-select-screen" class="screen">
+    <!-- GAME -->
+    <div id="game-screen" class="screen">
       <header>
         <div class="logo-area">
           <img src="https://iili.io/CZZM5KB.md.jpg" alt="Logo">
@@ -456,49 +292,6 @@
           <div class="lives">LIVES: <span id="lives">♥ ♥ ♥</span></div>
         </div>
       </header>
-
-      <div class="terminal">
-        <div class="terminal-header">root@pepe:~$</div>
-        <br><br>
-        <div style="text-align:center; margin-bottom:20px;">
-          <div style="font-size:1.1rem; margin-bottom:8px;">SELECT DIFFICULTY</div>
-          <div style="color:#88aa88; font-size:0.9rem;">Choose your clearance level</div>
-        </div>
-
-        <div class="level-select">
-          <button class="level-btn" onclick="startLevel('easy')">
-            [1] ACCESS_GRANTED
-            <span>Easy • Multiple Choice (A B C) • 10 Questions</span>
-          </button>
-          <button class="level-btn" onclick="startLevel('medium')">
-            [2] BREACH_IN_PROGRESS
-            <span>Medium • Story + Multiple Choice (A B C D) • 10 Questions</span>
-          </button>
-          <button class="level-btn" onclick="startLevel('hard')">
-            [3] ROOT_ACCESS
-            <span>Hard • Type the command manually • 10 Questions</span>
-          </button>
-        </div>
-
-        <div style="text-align:center; margin-top:25px;">
-          <button class="btn" onclick="backToLanding()" style="font-size:0.85rem; padding:10px 24px;">← BACK</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========== GAME SCREEN ========== -->
-    <div id="game-screen" class="screen">
-      <header>
-        <div class="logo-area">
-          <img src="https://iili.io/CZZM5KB.md.jpg" alt="Logo">
-          <div class="title">ROOT ACCESS</div>
-        </div>
-        <div class="stats">
-          <div>SCORE: <span id="score2">0</span></div>
-          <div class="lives">LIVES: <span id="lives2">♥ ♥ ♥</span></div>
-        </div>
-      </header>
-
       <div class="terminal">
         <div class="terminal-header">root@pepe:~/mission$</div>
         <br><br>
@@ -513,7 +306,7 @@
       </div>
     </div>
 
-    <!-- ========== RESULT SCREEN ========== -->
+    <!-- RESULT -->
     <div id="result-screen" class="screen">
       <div class="terminal" style="text-align:center; padding-top:50px;">
         <div class="terminal-header">root@pepe:~$</div>
@@ -521,13 +314,40 @@
         <h2 id="result-title">ACCESS GRANTED</h2>
         <div class="final-score" id="final-score">0</div>
         <div class="rank" id="rank">Elite Operator</div>
+        <div class="highscore-text" id="highscore-result"></div>
         <button class="btn" onclick="location.reload()">REBOOT SYSTEM</button>
       </div>
     </div>
-
   </div>
 
   <script>
+    // ========== SOUND ==========
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioContext();
+    }
+
+    function playTone(freq, type, duration) {
+      initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() { playTone(880, 'sine', 0.15); setTimeout(() => playTone(1100, 'sine', 0.2), 100); }
+    function playWrong() { playTone(200, 'sawtooth', 0.3); }
+    function playLevelComplete() { playTone(600, 'sine', 0.1); setTimeout(() => playTone(800, 'sine', 0.1), 120); setTimeout(() => playTone(1000, 'sine', 0.25), 240); }
+
+    // ========== QUESTIONS ==========
     const questions = {
       easy: [
         { q: "What command lists files in the current directory?", options: ["ls", "cd", "pwd"], answer: 0 },
@@ -542,16 +362,21 @@
         { q: "Which command is used to copy files?", options: ["cp", "mv", "copy"], answer: 0 }
       ],
       medium: [
-        { story: "Pepe has gained access to a restricted server. The system is asking for the current working directory.", q: "Which command should he use?", options: ["ls", "pwd", "whoami", "clear"], answer: 1 },
-        { story: "A suspicious process is running. Pepe needs to inspect active processes.", q: "What command shows running processes?", options: ["ps", "top", "both A and B", "kill"], answer: 2 },
-        { story: "Pepe found a file named 'secret.txt'. He wants to read its content.", q: "Which command should he use?", options: ["cat secret.txt", "ls secret.txt", "cd secret.txt", "rm secret.txt"], answer: 0 },
-        { story: "The server disk is almost full. Pepe needs to check disk usage.", q: "What command shows disk space in human-readable format?", options: ["df -h", "du", "free", "ls -lh"], answer: 0 },
+        { story: "Pepe has gained access to a restricted server.", q: "Which command shows the current working directory?", options: ["ls", "pwd", "whoami", "clear"], answer: 1 },
+        { story: "A suspicious process is running.", q: "What command shows running processes?", options: ["ps", "top", "both A and B", "kill"], answer: 2 },
+        { story: "Pepe found a file named 'secret.txt'.", q: "Which command reads its content?", options: ["cat secret.txt", "ls secret.txt", "cd secret.txt", "rm secret.txt"], answer: 0 },
+        { story: "The server disk is almost full.", q: "What command shows disk space in human-readable format?", options: ["df -h", "du", "free", "ls -lh"], answer: 0 },
         { story: "Pepe needs to make a script executable.", q: "Which command is correct?", options: ["chmod +x script.sh", "chown +x script.sh", "perm +x script.sh", "exec script.sh"], answer: 0 },
-        { story: "Someone left a backdoor. Pepe wants to see who is currently logged in.", q: "What command shows logged-in users?", options: ["who", "w", "both A and B", "users"], answer: 2 },
-        { story: "Pepe needs to search for the word 'password' inside all files in the current directory.", q: "Which command is most suitable?", options: ["grep -r password .", "find password", "search password", "locate password"], answer: 0 },
-        { story: "The connection feels slow. Pepe wants to test connectivity to google.com.", q: "What command should he use?", options: ["ping google.com", "curl google.com", "wget google.com", "trace google.com"], answer: 0 },
-        { story: "Pepe wants to see the last 20 lines of a log file.", q: "Which command is correct?", options: ["tail -n 20 logfile.log", "head -n 20 logfile.log", "cat -n 20 logfile.log", "less 20 logfile.log"], answer: 0 },
-        { story: "Pepe needs elevated privileges temporarily.", q: "What is the most common command to become root?", options: ["sudo su", "su root", "login root", "root"], answer: 0 }
+        { story: "Someone left a backdoor.", q: "What command shows logged-in users?", options: ["who", "w", "both A and B", "users"], answer: 2 },
+        { story: "Pepe needs to search for 'password' in all files.", q: "Which command is most suitable?", options: ["grep -r password .", "find password", "search password", "locate password"], answer: 0 },
+        { story: "Connection feels slow.", q: "What command tests connectivity to google.com?", options: ["ping google.com", "curl google.com", "wget google.com", "trace google.com"], answer: 0 },
+        { story: "Pepe wants the last 20 lines of a log.", q: "Which command is correct?", options: ["tail -n 20 logfile.log", "head -n 20 logfile.log", "cat -n 20 logfile.log", "less 20 logfile.log"], answer: 0 },
+        { story: "Pepe needs elevated privileges.", q: "Most common command to become root?", options: ["sudo su", "su root", "login root", "root"], answer: 0 },
+        { story: "Pepe wants to see file permissions.", q: "Which command shows detailed file listing?", options: ["ls -l", "ls -a", "ls -h", "ls -R"], answer: 0 },
+        { story: "A process is stuck.", q: "How do you kill a process by PID?", options: ["kill PID", "stop PID", "end PID", "rm PID"], answer: 0 },
+        { story: "Pepe needs to move a file.", q: "Which command moves or renames files?", options: ["mv", "cp", "rm", "touch"], answer: 0 },
+        { story: "He wants to see network interfaces.", q: "Common command to show network interfaces?", options: ["ifconfig / ip a", "netstat", "ping", "route"], answer: 0 },
+        { story: "Pepe needs to create an empty file.", q: "Which command creates an empty file?", options: ["touch file.txt", "mkdir file.txt", "cat file.txt", "nano file.txt"], answer: 0 }
       ],
       hard: [
         { q: "Type the command to list all files including hidden ones:", answers: ["ls -a", "ls -la", "ls -al"] },
@@ -563,7 +388,17 @@
         { q: "Type the command to display the manual for 'ls':", answers: ["man ls"] },
         { q: "Type the command to make 'script.sh' executable:", answers: ["chmod +x script.sh", "chmod 755 script.sh"] },
         { q: "Type the command to show disk usage in human readable format:", answers: ["df -h"] },
-        { q: "Type the command to switch to root using sudo:", answers: ["sudo su", "sudo -i", "sudo bash"] }
+        { q: "Type the command to switch to root using sudo:", answers: ["sudo su", "sudo -i", "sudo bash"] },
+        { q: "Type the command to show the last 50 lines of syslog:", answers: ["tail -n 50 /var/log/syslog", "tail -50 /var/log/syslog"] },
+        { q: "Type the command to search for 'error' recursively:", answers: ["grep -r error .", "grep -R error ."] },
+        { q: "Type the command to show current running processes:", answers: ["ps aux", "ps -ef", "top"] },
+        { q: "Type the command to create an empty file called 'notes.txt':", answers: ["touch notes.txt"] },
+        { q: "Type the command to move 'file1' to 'file2':", answers: ["mv file1 file2"] },
+        { q: "Type the command to show IP addresses of interfaces:", answers: ["ip a", "ip addr", "ifconfig"] },
+        { q: "Type the command to change ownership of a file to root:", answers: ["chown root file", "chown root:root file"] },
+        { q: "Type the command to display the first 20 lines of a file:", answers: ["head -n 20 file", "head -20 file"] },
+        { q: "Type the command to find files named 'config' in current directory:", answers: ["find . -name config", "find . -name 'config'"] },
+        { q: "Type the command to check listening ports:", answers: ["netstat -tuln", "ss -tuln", "netstat -tulnp"] }
       ]
     };
 
@@ -571,6 +406,7 @@
     let currentIndex = 0;
     let score = 0;
     let lives = 3;
+    let highScore = localStorage.getItem("rootAccessHS") || 0;
 
     const levelNames = {
       easy: "ACCESS_GRANTED",
@@ -578,7 +414,12 @@
       hard: "ROOT_ACCESS"
     };
 
+    // Init highscore display
+    document.getElementById("landing-highscore").textContent = "High Score: " + highScore;
+    document.getElementById("hs-display").textContent = highScore;
+
     function showLevelSelect() {
+      initAudio();
       document.getElementById("landing").classList.remove("active");
       document.getElementById("level-select-screen").classList.add("active");
     }
@@ -594,7 +435,6 @@
       score = 0;
       lives = 3;
       updateStats();
-
       document.getElementById("level-select-screen").classList.remove("active");
       document.getElementById("game-screen").classList.add("active");
       loadQuestion();
@@ -602,10 +442,7 @@
 
     function updateStats() {
       document.getElementById("score").textContent = score;
-      document.getElementById("score2").textContent = score;
-      const heartText = lives > 0 ? "♥ ".repeat(lives).trim() : "DEAD";
-      document.getElementById("lives").textContent = heartText;
-      document.getElementById("lives2").textContent = heartText;
+      document.getElementById("lives").textContent = lives > 0 ? "♥ ".repeat(lives).trim() : "DEAD";
     }
 
     function loadQuestion() {
@@ -616,7 +453,7 @@
       }
 
       const q = qList[currentIndex];
-      document.getElementById("level-badge").textContent = "LEVEL: " + levelNames[currentLevel];
+      document.getElementById("level-badge").textContent = "LEVEL: " + levelNames[currentLevel] + ` (${currentIndex+1}/${qList.length})`;
 
       const storyEl = document.getElementById("story");
       if (q.story) {
@@ -635,12 +472,11 @@
         optionsEl.style.display = "none";
         inputArea.style.display = "block";
         document.getElementById("answer-input").value = "";
-        setTimeout(() => document.getElementById("answer-input").focus(), 100);
+        setTimeout(() => document.getElementById("answer-input").focus(), 80);
       } else {
         inputArea.style.display = "none";
         optionsEl.style.display = "flex";
         optionsEl.innerHTML = "";
-
         q.options.forEach((opt, i) => {
           const div = document.createElement("div");
           div.className = "option";
@@ -659,18 +495,17 @@
 
       if (selected === q.answer) {
         options[selected].classList.add("correct");
+        playCorrect();
         score += currentLevel === "easy" ? 100 : 150;
       } else {
         options[selected].classList.add("wrong");
         options[q.answer].classList.add("correct");
+        playWrong();
         lives--;
       }
 
       setTimeout(() => {
-        if (lives <= 0) {
-          endGame(false);
-          return;
-        }
+        if (lives <= 0) { endGame(false); return; }
         currentIndex++;
         loadQuestion();
       }, 850);
@@ -682,15 +517,14 @@
       const correct = q.answers.some(ans => ans.toLowerCase() === input);
 
       if (correct) {
+        playCorrect();
         score += 200;
       } else {
+        playWrong();
         lives--;
       }
 
-      if (lives <= 0) {
-        endGame(false);
-        return;
-      }
+      if (lives <= 0) { endGame(false); return; }
       currentIndex++;
       loadQuestion();
     }
@@ -706,13 +540,25 @@
       document.getElementById("result-screen").classList.add("active");
       document.getElementById("final-score").textContent = score;
 
+      let newHigh = false;
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("rootAccessHS", highScore);
+        newHigh = true;
+      }
+
       if (won) {
+        playLevelComplete();
         document.getElementById("result-title").textContent = "ROOT ACCESS GRANTED";
-        document.getElementById("rank").textContent = score >= 1800 ? "Elite Operator" : "Skilled Hacker";
+        document.getElementById("rank").textContent = score >= 2500 ? "Elite Operator" : "Skilled Hacker";
       } else {
         document.getElementById("result-title").textContent = "ACCESS DENIED";
         document.getElementById("rank").textContent = "Connection terminated...";
       }
+
+      document.getElementById("highscore-result").textContent = newHigh 
+        ? "🎉 NEW HIGH SCORE: " + highScore 
+        : "High Score: " + highScore;
     }
   </script>
 </body>
