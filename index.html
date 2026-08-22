@@ -85,6 +85,22 @@
     .faq-item h3 { color: #00ff9f; font-size: 0.95rem; margin-bottom: 4px; }
     .faq-item p { color: #88aa88; font-size: 0.9rem; line-height: 1.5; }
 
+    .social-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: #00ff9f;
+      text-decoration: none;
+      border: 1px solid #00ff9f55;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      transition: 0.25s;
+    }
+    .social-link:hover {
+      background: #00ff9f22;
+      border-color: #00ff9f;
+      box-shadow: 0 0 15px #00ff9f44;
+    }
+
     /* Header */
     header {
       display: flex; align-items: center; justify-content: space-between;
@@ -209,6 +225,11 @@
         </p>
         <button class="start-btn" onclick="showLevelSelect()">START ROOTING</button>
         <div class="highscore-box" id="landing-highscore">High Score: 0</div>
+
+        <!-- X Social Link -->
+        <a href="https://x.com/StartRooting" target="_blank" class="social-link">
+          Follow on X → @StartRooting
+        </a>
       </div>
 
       <div class="section">
@@ -414,7 +435,6 @@
       hard: "ROOT_ACCESS"
     };
 
-    // Init highscore display
     document.getElementById("landing-highscore").textContent = "High Score: " + highScore;
     document.getElementById("hs-display").textContent = highScore;
 
