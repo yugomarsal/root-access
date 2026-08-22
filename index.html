@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Root Access</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #050505;
+      color: #00f0ff;
+      font-family: 'Share Tech Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #00f0ff33;
+      margin-bottom: 25px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-area img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #00f0ff;
+      box-shadow: 0 0 15px #00f0ff88;
+    }
+
+    .title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+
+    .stats {
+      text-align: right;
+      font-size: 0.95rem;
+    }
+
+    .stats span {
+      color: #fff;
+    }
+
+    /* Screens */
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* Start Screen */
+    #start-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #start-screen img {
+      width: 160px;
+      border-radius: 50%;
+      border: 3px solid #00f0ff;
+      box-shadow: 0 0 30px #00f0ffaa;
+      margin-bottom: 25px;
+    }
+
+    #start-screen h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px #00f0ff;
+    }
+
+    #start-screen p {
+      color: #aaa;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      background: transparent;
+      border: 2px solid #00f0ff;
+      color: #00f0ff;
+      padding: 14px 40px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .btn:hover {
+      background: #00f0ff;
+      color: #000;
+      box-shadow: 0 0 25px #00f0ff;
+    }
+
+    /* Game Screen */
+    .terminal {
+      background: #0a0a0a;
+      border: 1px solid #00f0ff44;
+      border-radius: 8px;
+      padding: 25px;
+      min-height: 420px;
+      box-shadow: 0 0 30px #00f0ff22;
+      position: relative;
+    }
+
+    .level-badge {
+      display: inline-block;
+      background: #00f0ff22;
+      border: 1px solid #00f0ff;
+      padding: 4px 14px;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .story {
+      color: #7dffb3;
+      margin-bottom: 18px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .question {
+      font-size: 1.15rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      background: #111;
+      border: 1px solid #00f0ff55;
+      padding: 14px 18px;
+      cursor: pointer;
+      transition: 0.25s;
+      text-align: left;
+    }
+
+    .option:hover {
+      background: #00f0ff22;
+      border-color: #00f0ff;
+      box-shadow: 0 0 12px #00f0ff55;
+    }
+
+    .option.correct {
+      background: #00ff8822;
+      border-color: #00ff88;
+    }
+
+    .option.wrong {
+      background: #ff004422;
+      border-color: #ff0044;
+    }
+
+    /* Hard Level Input */
+    .input-area {
+      margin-top: 20px;
+    }
+
+    .input-area input {
+      width: 100%;
+      background: #111;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+      padding: 14px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1rem;
+      outline: none;
+    }
+
+    .input-area input:focus {
+      box-shadow: 0 0 15px #00f0ff66;
+    }
+
+    .submit-btn {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    /* Result Screen */
+    #result-screen {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    #result-screen h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .final-score {
+      font-size: 3rem;
+      color: #fff;
+      margin: 20px 0;
+      text-shadow: 0 0 20px #00f0ff;
+    }
+
+    .rank {
+      font-size: 1.3rem;
+      color: #7dffb3;
+      margin-bottom: 30px;
+    }
+
+    /* Lives */
+    .lives {
+      color: #ff4d6d;
+      letter-spacing: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .title { font-size: 1.3rem; }
+      #start-screen h1 { font-size: 2rem; }
+      .logo-area img { width: 45px; height: 45px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo-area">
+        <img src="https://iili.io/CZZM5KB.md.jpg" alt="Root Access Logo">
+        <div class="title">ROOT ACCESS</div>
+      </div>
+      <div class="stats">
+        <div>SCORE: <span id="score">0</span></div>
+        <div class="lives">LIVES: <span id="lives">♥ ♥ ♥</span></div>
+      </div>
+    </header>
+
+    <!-- START SCREEN -->
+    <div id="start-screen" class="screen active">
+      <img src="https://iili.io/CZZM5KB.md.jpg" alt="Logo">
+      <h1>ROOT ACCESS</h1>
+      <p>
+        Enter the system.<br>
+        Debug the errors.<br>
+        Gain root privileges.
+      </p>
+      <button class="btn" onclick="startGame()">INITIALIZE</button>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen">
+      <div class="terminal">
+        <div class="level-badge" id="level-badge">LEVEL: ACCESS_GRANTED</div>
+        <div class="story" id="story"></div>
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+        <div class="input-area" id="input-area" style="display:none;">
+          <input type="text" id="answer-input" placeholder="Type the command..." autocomplete="off">
+          <button class="btn submit-btn" onclick="checkTypedAnswer()">EXECUTE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="screen">
+      <h2 id="result-title">ACCESS GRANTED</h2>
+      <div class="final-score" id="final-score">0</div>
+      <div class="rank" id="rank">Elite Operator</div>
+      <button class="btn" onclick="location.reload()">REBOOT SYSTEM</button>
+    </div>
+  </div>
+
+  <script>
+    // ========== QUESTIONS ==========
+    const questions = {
+      easy: [
+        {
+          q: "What command is used to list files in the current directory?",
+          options: ["ls", "cd", "pwd"],
+          answer: 0
+        },
+        {
+          q: "Which command shows the current working directory?",
+          options: ["pwd", "ls", "whoami"],
+          answer: 0
+        },
+        {
+          q: "What does 'cd' stand for?",
+          options: ["Change Directory", "Copy Data", "Clear Disk"],
+          answer: 0
+        },
+        {
+          q: "Which command is used to create a new directory?",
+          options: ["mkdir", "rmdir", "touch"],
+          answer: 0
+        },
+        {
+          q: "What command clears the terminal screen?",
+          options: ["clear", "cls", "reset"],
+          answer: 0
+        },
+        {
+          q: "Which command shows the current user?",
+          options: ["whoami", "user", "id"],
+          answer: 0
+        },
+        {
+          q: "What does 'rm' do?",
+          options: ["Remove files", "Rename files", "Read memory"],
+          answer: 0
+        },
+        {
+          q: "Which symbol is used for comments in most shells?",
+          options: ["#", "//", "--"],
+          answer: 0
+        },
+        {
+          q: "What command displays the manual of a command?",
+          options: ["man", "help", "info"],
+          answer: 0
+        },
+        {
+          q: "Which command is used to copy files?",
+          options: ["cp", "mv", "copy"],
+          answer: 0
+        }
+      ],
+      medium: [
+        {
+          story: "Pepe has gained access to a restricted server. The system is asking for the current working directory.",
+          q: "Which command should he use?",
+          options: ["ls", "pwd", "whoami", "clear"],
+          answer: 1
+        },
+        {
+          story: "A suspicious process is running. Pepe needs to see active processes.",
+          q: "What command shows running processes?",
+          options: ["ps", "top", "both A and B", "kill"],
+          answer: 2
+        },
+        {
+          story: "Pepe found a file named 'secret.txt'. He wants to read its content.",
+          q: "Which command should he use?",
+          options: ["cat secret.txt", "ls secret.txt", "cd secret.txt", "rm secret.txt"],
+          answer: 0
+        },
+        {
+          story: "The server is almost full. Pepe needs to check disk usage.",
+          q: "What command shows disk space?",
+          options: ["df -h", "du", "free", "ls -lh"],
+          answer: 0
+        },
+        {
+          story: "Pepe needs to change file permissions to make a script executable.",
+          q: "Which command is correct?",
+          options: ["chmod +x script.sh", "chown +x script.sh", "perm +x script.sh", "exec script.sh"],
+          answer: 0
+        },
+        {
+          story: "Someone left a backdoor. Pepe wants to see who is logged in.",
+          q: "What command shows logged-in users?",
+          options: ["who", "w", "both A and B", "users"],
+          answer: 2
+        },
+        {
+          story: "Pepe needs to search for the word 'password' inside all files.",
+          q: "Which command is most suitable?",
+          options: ["grep -r password .", "find password", "search password", "locate password"],
+          answer: 0
+        },
+        {
+          story: "The network seems slow. Pepe wants to test connectivity to google.com.",
+          q: "What command should he use?",
+          options: ["ping google.com", "curl google.com", "wget google.com", "trace google.com"],
+          answer: 0
+        },
+        {
+          story: "Pepe wants to see the last 20 lines of a log file.",
+          q: "Which command is correct?",
+          options: ["tail -n 20 logfile.log", "head -n 20 logfile.log", "cat -n 20 logfile.log", "less 20 logfile.log"],
+          answer: 0
+        },
+        {
+          story: "Pepe needs to become the root user temporarily.",
+          q: "What is the most common command?",
+          options: ["sudo su", "su root", "login root", "root"],
+          answer: 0
+        }
+      ],
+      hard: [
+        {
+          q: "Type the command to list all files including hidden ones:",
+          answers: ["ls -a", "ls -la", "ls -al"]
+        },
+        {
+          q: "Type the command to create a directory named 'hack':",
+          answers: ["mkdir hack"]
+        },
+        {
+          q: "Type the command to remove a file named 'temp.txt':",
+          answers: ["rm temp.txt"]
+        },
+        {
+          q: "Type the command to show the current user:",
+          answers: ["whoami"]
+        },
+        {
+          q: "Type the command to clear the terminal:",
+          answers: ["clear", "cls"]
+        },
+        {
+          q: "Type the command to change to the home directory:",
+          answers: ["cd ~", "cd", "cd $HOME"]
+        },
+        {
+          q: "Type the command to display the manual for 'ls':",
+          answers: ["man ls"]
+        },
+        {
+          q: "Type the command to make 'script.sh' executable:",
+          answers: ["chmod +x script.sh", "chmod 755 script.sh"]
+        },
+        {
+          q: "Type the command to show disk usage in human readable format:",
+          answers: ["df -h"]
+        },
+        {
+          q: "Type the command to switch to root (using sudo):",
+          answers: ["sudo su", "sudo -i", "sudo bash"]
+        }
+      ]
+    };
+
+    // ========== GAME STATE ==========
+    let currentLevel = "easy";
+    let currentIndex = 0;
+    let score = 0;
+    let lives = 3;
+    let levels = ["easy", "medium", "hard"];
+
+    const levelNames = {
+      easy: "ACCESS_GRANTED",
+      medium: "BREACH_IN_PROGRESS",
+      hard: "ROOT_ACCESS"
+    };
+
+    // ========== FUNCTIONS ==========
+    function startGame() {
+      document.getElementById("start-screen").classList.remove("active");
+      document.getElementById("game-screen").classList.add("active");
+      loadQuestion();
+    }
+
+    function updateStats() {
+      document.getElementById("score").textContent = score;
+      const hearts = "♥ ".repeat(lives).trim() || "DEAD";
+      document.getElementById("lives").textContent = hearts;
+    }
+
+    function loadQuestion() {
+      const qList = questions[currentLevel];
+      if (currentIndex >= qList.length) {
+        // Next level
+        const nextLevelIndex = levels.indexOf(currentLevel) + 1;
+        if (nextLevelIndex >= levels.length) {
+          endGame(true);
+          return;
+        }
+        currentLevel = levels[nextLevelIndex];
+        currentIndex = 0;
+      }
+
+      const q = questions[currentLevel][currentIndex];
+      document.getElementById("level-badge").textContent = "LEVEL: " + levelNames[currentLevel];
+
+      // Story
+      const storyEl = document.getElementById("story");
+      if (q.story) {
+        storyEl.style.display = "block";
+        storyEl.textContent = "> " + q.story;
+      } else {
+        storyEl.style.display = "none";
+      }
+
+      // Question
+      document.getElementById("question").textContent = "> " + q.q;
+
+      // Options or Input
+      const optionsEl = document.getElementById("options");
+      const inputArea = document.getElementById("input-area");
+
+      if (currentLevel === "hard") {
+        optionsEl.style.display = "none";
+        inputArea.style.display = "block";
+        document.getElementById("answer-input").value = "";
+        document.getElementById("answer-input").focus();
+      } else {
+        inputArea.style.display = "none";
+        optionsEl.style.display = "flex";
+        optionsEl.innerHTML = "";
+
+        q.options.forEach((opt, i) => {
+          const div = document.createElement("div");
+          div.className = "option";
+          div.textContent = String.fromCharCode(65 + i) + ". " + opt;
+          div.onclick = () => checkAnswer(i);
+          optionsEl.appendChild(div);
+        });
+      }
+
+      updateStats();
+    }
+
+    function checkAnswer(selected) {
+      const q = questions[currentLevel][currentIndex];
+      const options = document.querySelectorAll(".option");
+
+      options.forEach(opt => opt.style.pointerEvents = "none");
+
+      if (selected === q.answer) {
+        options[selected].classList.add("correct");
+        score += currentLevel === "easy" ? 100 : 150;
+      } else {
+        options[selected].classList.add("wrong");
+        options[q.answer].classList.add("correct");
+        lives--;
+      }
+
+      setTimeout(() => {
+        if (lives <= 0) {
+          endGame(false);
+          return;
+        }
+        currentIndex++;
+        loadQuestion();
+      }, 900);
+    }
+
+    function checkTypedAnswer() {
+      const input = document.getElementById("answer-input").value.trim().toLowerCase();
+      const q = questions[currentLevel][currentIndex];
+      const correct = q.answers.some(ans => ans.toLowerCase() === input);
+
+      if (correct) {
+        score += 200;
+      } else {
+        lives--;
+      }
+
+      if (lives <= 0) {
+        endGame(false);
+        return;
+      }
+
+      currentIndex++;
+      loadQuestion();
+    }
+
+    // Enter key support for hard level
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && currentLevel === "hard" && document.getElementById("game-screen").classList.contains("active")) {
+        checkTypedAnswer();
+      }
+    });
+
+    function endGame(won) {
+      document.getElementById("game-screen").classList.remove("active");
+      document.getElementById("result-screen").classList.add("active");
+
+      document.getElementById("final-score").textContent = score;
+
+      if (won) {
+        document.getElementById("result-title").textContent = "ROOT ACCESS GRANTED";
+        document.getElementById("rank").textContent = score >= 2500 ? "Elite Operator" : "Skilled Hacker";
+      } else {
+        document.getElementById("result-title").textContent = "ACCESS DENIED";
+        document.getElementById("rank").textContent = "Better luck next time, operator";
+      }
+    }
+  </script>
+</body>
+</html>
