@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Root Access - Terminal Quiz Game</title>
+
+  <!-- Orynth Verification -->
+  <meta name="ory-verify" content="orynth-67bfe2e4ebf8461fb294386033ccc649">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@600;700&display=swap');
 
@@ -226,7 +230,6 @@
         <button class="start-btn" onclick="showLevelSelect()">START ROOTING</button>
         <div class="highscore-box" id="landing-highscore">High Score: 0</div>
 
-        <!-- X Social Link -->
         <a href="https://x.com/StartRooting" target="_blank" class="social-link">
           Follow on X → @StartRooting
         </a>
@@ -342,7 +345,6 @@
   </div>
 
   <script>
-    // ========== SOUND ==========
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx;
 
@@ -368,7 +370,6 @@
     function playWrong() { playTone(200, 'sawtooth', 0.3); }
     function playLevelComplete() { playTone(600, 'sine', 0.1); setTimeout(() => playTone(800, 'sine', 0.1), 120); setTimeout(() => playTone(1000, 'sine', 0.25), 240); }
 
-    // ========== QUESTIONS ==========
     const questions = {
       easy: [
         { q: "What command lists files in the current directory?", options: ["ls", "cd", "pwd"], answer: 0 },
@@ -400,186 +401,4 @@
         { story: "Pepe needs to create an empty file.", q: "Which command creates an empty file?", options: ["touch file.txt", "mkdir file.txt", "cat file.txt", "nano file.txt"], answer: 0 }
       ],
       hard: [
-        { q: "Type the command to list all files including hidden ones:", answers: ["ls -a", "ls -la", "ls -al"] },
-        { q: "Type the command to create a directory named 'hack':", answers: ["mkdir hack"] },
-        { q: "Type the command to remove a file named 'temp.txt':", answers: ["rm temp.txt"] },
-        { q: "Type the command to show the current user:", answers: ["whoami"] },
-        { q: "Type the command to clear the terminal:", answers: ["clear"] },
-        { q: "Type the command to change to the home directory:", answers: ["cd ~", "cd", "cd $HOME"] },
-        { q: "Type the command to display the manual for 'ls':", answers: ["man ls"] },
-        { q: "Type the command to make 'script.sh' executable:", answers: ["chmod +x script.sh", "chmod 755 script.sh"] },
-        { q: "Type the command to show disk usage in human readable format:", answers: ["df -h"] },
-        { q: "Type the command to switch to root using sudo:", answers: ["sudo su", "sudo -i", "sudo bash"] },
-        { q: "Type the command to show the last 50 lines of syslog:", answers: ["tail -n 50 /var/log/syslog", "tail -50 /var/log/syslog"] },
-        { q: "Type the command to search for 'error' recursively:", answers: ["grep -r error .", "grep -R error ."] },
-        { q: "Type the command to show current running processes:", answers: ["ps aux", "ps -ef", "top"] },
-        { q: "Type the command to create an empty file called 'notes.txt':", answers: ["touch notes.txt"] },
-        { q: "Type the command to move 'file1' to 'file2':", answers: ["mv file1 file2"] },
-        { q: "Type the command to show IP addresses of interfaces:", answers: ["ip a", "ip addr", "ifconfig"] },
-        { q: "Type the command to change ownership of a file to root:", answers: ["chown root file", "chown root:root file"] },
-        { q: "Type the command to display the first 20 lines of a file:", answers: ["head -n 20 file", "head -20 file"] },
-        { q: "Type the command to find files named 'config' in current directory:", answers: ["find . -name config", "find . -name 'config'"] },
-        { q: "Type the command to check listening ports:", answers: ["netstat -tuln", "ss -tuln", "netstat -tulnp"] }
-      ]
-    };
-
-    let currentLevel = "easy";
-    let currentIndex = 0;
-    let score = 0;
-    let lives = 3;
-    let highScore = localStorage.getItem("rootAccessHS") || 0;
-
-    const levelNames = {
-      easy: "ACCESS_GRANTED",
-      medium: "BREACH_IN_PROGRESS",
-      hard: "ROOT_ACCESS"
-    };
-
-    document.getElementById("landing-highscore").textContent = "High Score: " + highScore;
-    document.getElementById("hs-display").textContent = highScore;
-
-    function showLevelSelect() {
-      initAudio();
-      document.getElementById("landing").classList.remove("active");
-      document.getElementById("level-select-screen").classList.add("active");
-    }
-
-    function backToLanding() {
-      document.getElementById("level-select-screen").classList.remove("active");
-      document.getElementById("landing").classList.add("active");
-    }
-
-    function startLevel(level) {
-      currentLevel = level;
-      currentIndex = 0;
-      score = 0;
-      lives = 3;
-      updateStats();
-      document.getElementById("level-select-screen").classList.remove("active");
-      document.getElementById("game-screen").classList.add("active");
-      loadQuestion();
-    }
-
-    function updateStats() {
-      document.getElementById("score").textContent = score;
-      document.getElementById("lives").textContent = lives > 0 ? "♥ ".repeat(lives).trim() : "DEAD";
-    }
-
-    function loadQuestion() {
-      const qList = questions[currentLevel];
-      if (currentIndex >= qList.length) {
-        endGame(true);
-        return;
-      }
-
-      const q = qList[currentIndex];
-      document.getElementById("level-badge").textContent = "LEVEL: " + levelNames[currentLevel] + ` (${currentIndex+1}/${qList.length})`;
-
-      const storyEl = document.getElementById("story");
-      if (q.story) {
-        storyEl.style.display = "block";
-        storyEl.textContent = "> " + q.story;
-      } else {
-        storyEl.style.display = "none";
-      }
-
-      document.getElementById("question").textContent = "> " + q.q;
-
-      const optionsEl = document.getElementById("options");
-      const inputArea = document.getElementById("input-area");
-
-      if (currentLevel === "hard") {
-        optionsEl.style.display = "none";
-        inputArea.style.display = "block";
-        document.getElementById("answer-input").value = "";
-        setTimeout(() => document.getElementById("answer-input").focus(), 80);
-      } else {
-        inputArea.style.display = "none";
-        optionsEl.style.display = "flex";
-        optionsEl.innerHTML = "";
-        q.options.forEach((opt, i) => {
-          const div = document.createElement("div");
-          div.className = "option";
-          div.textContent = String.fromCharCode(65 + i) + ". " + opt;
-          div.onclick = () => checkAnswer(i);
-          optionsEl.appendChild(div);
-        });
-      }
-      updateStats();
-    }
-
-    function checkAnswer(selected) {
-      const q = questions[currentLevel][currentIndex];
-      const options = document.querySelectorAll(".option");
-      options.forEach(opt => opt.style.pointerEvents = "none");
-
-      if (selected === q.answer) {
-        options[selected].classList.add("correct");
-        playCorrect();
-        score += currentLevel === "easy" ? 100 : 150;
-      } else {
-        options[selected].classList.add("wrong");
-        options[q.answer].classList.add("correct");
-        playWrong();
-        lives--;
-      }
-
-      setTimeout(() => {
-        if (lives <= 0) { endGame(false); return; }
-        currentIndex++;
-        loadQuestion();
-      }, 850);
-    }
-
-    function checkTypedAnswer() {
-      const input = document.getElementById("answer-input").value.trim().toLowerCase();
-      const q = questions[currentLevel][currentIndex];
-      const correct = q.answers.some(ans => ans.toLowerCase() === input);
-
-      if (correct) {
-        playCorrect();
-        score += 200;
-      } else {
-        playWrong();
-        lives--;
-      }
-
-      if (lives <= 0) { endGame(false); return; }
-      currentIndex++;
-      loadQuestion();
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && currentLevel === "hard" && document.getElementById("game-screen").classList.contains("active")) {
-        checkTypedAnswer();
-      }
-    });
-
-    function endGame(won) {
-      document.getElementById("game-screen").classList.remove("active");
-      document.getElementById("result-screen").classList.add("active");
-      document.getElementById("final-score").textContent = score;
-
-      let newHigh = false;
-      if (score > highScore) {
-        highScore = score;
-        localStorage.setItem("rootAccessHS", highScore);
-        newHigh = true;
-      }
-
-      if (won) {
-        playLevelComplete();
-        document.getElementById("result-title").textContent = "ROOT ACCESS GRANTED";
-        document.getElementById("rank").textContent = score >= 2500 ? "Elite Operator" : "Skilled Hacker";
-      } else {
-        document.getElementById("result-title").textContent = "ACCESS DENIED";
-        document.getElementById("rank").textContent = "Connection terminated...";
-      }
-
-      document.getElementById("highscore-result").textContent = newHigh 
-        ? "🎉 NEW HIGH SCORE: " + highScore 
-        : "High Score: " + highScore;
-    }
-  </script>
-</body>
-</html>
+        { q: "Type the command to list all files including hidden ones:", answers: ["ls -
